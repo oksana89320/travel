@@ -1,0 +1,31 @@
+<%= form_with(model: room_category, local: true) do |form| %>
+  <% if room_category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(room_category.errors.count, "error") %> prohibited this room_category from being saved:</h2>
+
+      <ul>
+      <% room_category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <%= form.fields_for :hotel do |hotel|%>
+  <div class="room_category_fields">
+    <div class="fiels">
+      <%= hotel.label :name %>
+      <%= hotel.text_field :name %><br>
+    </div>
+  </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
